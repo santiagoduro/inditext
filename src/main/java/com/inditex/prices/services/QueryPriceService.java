@@ -1,9 +1,9 @@
 package com.inditex.prices.services;
 
-import com.inditex.prices.repository.entity.Price;
+import com.inditex.prices.restcontroller.dto.PriceDTO;
 import java.time.LocalDateTime;
 
 public interface QueryPriceService {
 
-    Price queryPrice(String productId, Integer branchId, LocalDateTime queryTime);
+    PriceDTO queryPrice(String productId, Integer branchId, LocalDateTime queryTime);
 }

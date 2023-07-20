@@ -22,7 +22,7 @@ public class IntegrationPriceRepositoryTests {
 
     //Test 1: request at 10:00 of day 14 for product 35455 and the brand 1 (ZARA)
     @Test
-    public void whenFindByDateForTest1ReturnsPriceCorrectly(){
+    public void whenFindPriceForTest1ReturnsPriceCorrectly(){
        Price price1 = priceRepository.findTopByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc("35455",1,
             LocalDateTime.of(2020,Month.JUNE, 14, 10, 0),
            LocalDateTime.of(2020,Month.JUNE, 14, 10, 0));
@@ -32,7 +32,7 @@ public class IntegrationPriceRepositoryTests {
 
     //Test 2: request at 16:00 of day 14 for product 35455 and the brand 1 (ZARA)
     @Test
-    public void whenFindByDateForTest2ReturnsPriceCorrectly(){
+    public void whenFindPriceForTest2ReturnsPriceCorrectly(){
         Price price1 = priceRepository.findTopByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc("35455",1,
             LocalDateTime.of(2020,Month.JUNE, 14, 16, 0),
             LocalDateTime.of(2020,Month.JUNE, 14, 16, 0));
@@ -42,7 +42,7 @@ public class IntegrationPriceRepositoryTests {
 
     //Test 3: request at 21:00 of day 14 for product 35455 and the brand 1 (ZARA)
     @Test
-    public void whenFindByDateForTest3ReturnsPriceCorrectly(){
+    public void whenFindPriceForTest3ReturnsPriceCorrectly(){
         Price price1 = priceRepository.findTopByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc("35455",1,
             LocalDateTime.of(2020,Month.JUNE, 14, 21, 0),
             LocalDateTime.of(2020,Month.JUNE, 14, 21, 0));
@@ -52,7 +52,7 @@ public class IntegrationPriceRepositoryTests {
 
     //Test 4: request at 10:00 of day 15 for product 35455 and the brand 1 (ZARA)
     @Test
-    public void whenFindByDateForTest4ReturnsPriceCorrectly(){
+    public void whenFindPriceForTest4ReturnsPriceCorrectly(){
         Price price1 = priceRepository.findTopByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc("35455",1,
             LocalDateTime.of(2020,Month.JUNE, 15, 10, 0),
             LocalDateTime.of(2020,Month.JUNE, 15, 10, 0));
@@ -62,12 +62,21 @@ public class IntegrationPriceRepositoryTests {
 
     //Test 5: request at 21:00 of day 16 for product 35455 and the brand 1 (ZARA)
     @Test
-    public void whenFindByDateForTest5ReturnsPriceCorrectly(){
+    public void whenFindByPriceForTest5ReturnsPriceCorrectly(){
         Price price1 = priceRepository.findTopByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc("35455",1,
             LocalDateTime.of(2020,Month.JUNE, 16, 21, 0),
             LocalDateTime.of(2020,Month.JUNE, 16, 21, 0));
 
         assertThat(price1.getPrice()).isEqualByComparingTo(BigDecimal.valueOf(38.95d));
+
+    }
+
+    @Test
+    public void whenFindPriceDoesNotFoundAnything(){
+        Price price1 = priceRepository.findTopByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc("35455",1,
+            LocalDateTime.of(2019,Month.JUNE, 16, 21, 0),
+            LocalDateTime.of(2019,Month.JUNE, 16, 21, 0));
+        assertThat(price1).isNull();
     }
 
 }

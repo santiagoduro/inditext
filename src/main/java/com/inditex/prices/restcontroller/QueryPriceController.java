@@ -1,8 +1,8 @@
 package com.inditex.prices.restcontroller;
 
+import com.inditex.prices.restcontroller.dto.PriceDTO;
 import com.inditex.prices.services.QueryPriceService;
 import java.time.LocalDateTime;
-import com.inditex.prices.repository.entity.Price;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.MediaType;
@@ -21,7 +21,7 @@ public class QueryPriceController
     }
 
     @GetMapping(value = "/price", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Price> getPrice(
+    public ResponseEntity<PriceDTO> getPrice(
         @RequestParam(value = "queryDateTime") @DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime queryDateTime,
         @RequestParam(value = "productId") String productId,
         @RequestParam(value = "brandId") Integer brandId){
