@@ -9,12 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class PricesApplication{
 
-	@Autowired
-	PriceRepository priceRepository;
-	@Autowired
-	BrandRepository brandRepository;
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(PricesApplication.class, args);
 	}
